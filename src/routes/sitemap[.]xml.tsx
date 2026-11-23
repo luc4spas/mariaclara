@@ -14,21 +14,37 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async ({ request }) => {
-        const configuredOrigin = process.env["SITE_URL"]?.replace(/\/+$/, "");
+        const configuredOrigin = (
+          process.env["SITE_URL"] ||
+          process.env["VITE_SITE_URL"] ||
+          import.meta.env?.["VITE_SITE_URL"]
+        )?.replace(/\/+$/, "");
         const origin = configuredOrigin || new URL(request.url).origin;
-        const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
-        const sb = createClient(process.env["SUPABASE_URL"]!, key, {
-          auth: { persistSession: false },
-          global: {
-            fetch: (i, init) => {
-              const h = new Headers(init?.headers);
-              if (h.get("Authorization") === `Bearer ${key}`) h.delete("Authorization");
-              h.set("apikey", key);
-              return fetch(i, { ...init, headers: h });
+        const url =
+          process.env["SUPABASE_URL"] ||
+          process.env["VITE_SUPABASE_URL"] ||
+          import.meta.env?.["VITE_SUPABASE_URL"];
+        const key =
+          process.env["SUPABASE_PUBLISHABLE_KEY"] ||
+          process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ||
+          process.env["SUPABASE_ANON_KEY"] ||
+          process.env["VITE_SUPABASE_ANON_KEY"] ||
+          import.meta.env?.["VITE_SUPABASE_PUBLISHABLE_KEY"];
+        let data: { slug: string; updated_at: string }[] | null = null;
+        if (url && key) {
+          const sb = createClient(url, key, {
+            auth: { persistSession: false },
+            global: {
+              fetch: (i, init) => {
+                const h = new Headers(init?.headers);
+                if (h.get("Authorization") === `Bearer ${key}`) h.delete("Authorization");
+                h.set("apikey", key);
+                return fetch(i, { ...init, headers: h });
+              },
             },
-          },
-        });
-        const { data } = await sb.from("courses").select("slug, updated_at").eq("published", true);
+          });
+          ({ data } = await sb.from("courses").select("slug, updated_at").eq("published", true));
+        }
         const urls = [
           `<url><loc>${escapeXml(`${origin}/`)}</loc><priority>1.0</priority></url>`,
           ...(data ?? []).map(
