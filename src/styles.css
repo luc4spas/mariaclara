@@ -1,0 +1,136 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/manrope";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-sans: "Manrope Variable", "Manrope", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sage: var(--sage);
+  --color-sage-foreground: var(--sage-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-whatsapp: var(--whatsapp);
+}
+
+:root {
+  --radius: 1rem;
+  /* warm cream, terracotta, botanical sage */
+  --background: oklch(0.975 0.014 80);
+  --foreground: oklch(0.25 0.03 40);
+  --card: oklch(0.992 0.008 80);
+  --card-foreground: oklch(0.25 0.03 40);
+  --popover: oklch(0.992 0.008 80);
+  --popover-foreground: oklch(0.25 0.03 40);
+  --primary: oklch(0.55 0.135 38);
+  --primary-foreground: oklch(0.988 0.008 80);
+  --secondary: oklch(0.935 0.026 75);
+  --secondary-foreground: oklch(0.28 0.035 40);
+  --muted: oklch(0.942 0.018 78);
+  --muted-foreground: oklch(0.46 0.03 45);
+  --accent: oklch(0.89 0.055 62);
+  --accent-foreground: oklch(0.28 0.04 40);
+  /* WCAG AA+ (>5.8:1 contrast with white text) harmonizing with emerald accents */
+  --sage: oklch(0.43 0.075 152);
+  --sage-foreground: oklch(0.985 0.01 85);
+  --ink: oklch(0.24 0.03 40);
+  --ink-foreground: oklch(0.965 0.014 80);
+  --whatsapp: oklch(0.54 0.155 150);
+  --destructive: oklch(0.55 0.23 27);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.022 70);
+  --input: oklch(0.88 0.022 70);
+  --ring: oklch(0.55 0.135 38);
+  --gradient-warm: linear-gradient(160deg, oklch(0.95 0.034 70), oklch(0.975 0.014 80) 62%);
+  --shadow-soft: 0 20px 50px -24px color-mix(in oklab, var(--primary) 34%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility bg-warm {
+  background-image: var(--gradient-warm);
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+@utility reveal {
+  animation: reveal 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    animation: none !important;
+  }
+}
