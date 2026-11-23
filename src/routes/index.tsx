@@ -148,7 +148,7 @@ function Index() {
               <div className="absolute bottom-3 left-3 right-3 rounded-2xl border border-border/60 bg-card/95 px-5 py-3.5 shadow-soft backdrop-blur-sm sm:right-auto md:-bottom-6 md:-left-8 md:py-4">
                 <p className="font-display text-xl md:text-2xl">{c.name}</p>
                 <p className="text-xs font-medium text-muted-foreground">
-                  Terapia alimentar no TEA
+                  Nutricionista Clínica &amp; Terapeuta Alimentar
                 </p>
               </div>
             </div>
