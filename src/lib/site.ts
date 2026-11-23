@@ -86,7 +86,7 @@ export const defaultContent: SiteContent = {
   whatsapp: "",
   instagram: "",
   email: "",
-  seoTitle: "Maria Clara Passos — Nutricionista",
+  seoTitle: "Maria Clara Passos — Nutricionista Clínica & Terapeuta Alimentar",
   seoDescription: "Nutricionista clínica e terapeuta alimentar.",
 };
 

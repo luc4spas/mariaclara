@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
   }),
   head: ({ loaderData }) => {
     const c = loaderData?.content;
-    const title = c?.seoTitle ?? "Maria Clara Passos — Nutricionista e Terapeuta Alimentar";
+    const title = c?.seoTitle || "Maria Clara Passos — Nutricionista Clínica & Terapeuta Alimentar";
     const description =
       c?.seoDescription ?? "Nutricionista clínica especialista em dificuldades alimentares.";
     const siteUrl = getSiteUrl();
