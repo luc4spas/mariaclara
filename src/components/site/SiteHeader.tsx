@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { waLink } from "@/lib/site";
+import { FALE_COMIGO_WHATSAPP, waLink } from "@/lib/site";
 
 const NAV_ITEMS = [
   { hash: "sobre", label: "Sobre" },
@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { hash: "duvidas", label: "Dúvidas" },
 ] as const;
 
-export function SiteHeader({ name, whatsapp }: { name: string; whatsapp: string }) {
+export function SiteHeader({ name }: { name: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -51,17 +51,15 @@ export function SiteHeader({ name, whatsapp }: { name: string; whatsapp: string 
         </nav>
 
         <div className="flex items-center gap-2">
-          {whatsapp && (
-            <Button asChild variant="hero" size="sm" className="px-4 sm:px-5">
-              <a
-                href={waLink(whatsapp, "Olá Maria Clara! Vim pelo site.")}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Fale comigo
-              </a>
-            </Button>
-          )}
+          <Button asChild variant="hero" size="sm" className="px-4 sm:px-5">
+            <a
+              href={waLink(FALE_COMIGO_WHATSAPP, "Olá Maria Clara! Vim pelo site.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Fale comigo
+            </a>
+          </Button>
           <button
             type="button"
             className="inline-flex size-9 items-center justify-center rounded-full border border-border/80 bg-card text-foreground transition-colors hover:bg-secondary md:hidden"

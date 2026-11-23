@@ -12,7 +12,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CourseCard } from "@/components/site/CourseCard";
 import { getSiteData } from "@/lib/content.functions";
-import { absoluteUrl, getSiteUrl, images, waLink } from "@/lib/site";
+import { absoluteUrl, GENERAL_WHATSAPP, getSiteUrl, images, waLink } from "@/lib/site";
 
 const siteQuery = queryOptions({ queryKey: ["site"], queryFn: () => getSiteData() });
 
@@ -100,7 +100,7 @@ function Index() {
 
   return (
     <div className="min-h-screen">
-      <SiteHeader name={c.name} whatsapp={c.whatsapp} />
+      <SiteHeader name={c.name} />
       <main>
         {/* Hero */}
         <section className="overflow-x-clip bg-warm">
@@ -117,17 +117,15 @@ function Index() {
                     Conheça os cursos <ArrowRight />
                   </a>
                 </Button>
-                {c.whatsapp && (
-                  <Button asChild variant="heroOutline" size="xl">
-                    <a
-                      href={waLink(c.whatsapp, "Olá! Gostaria de saber mais.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Falar pelo WhatsApp
-                    </a>
-                  </Button>
-                )}
+                <Button asChild variant="heroOutline" size="xl">
+                  <a
+                    href={waLink(GENERAL_WHATSAPP, "Olá! Gostaria de saber mais.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Falar pelo WhatsApp
+                  </a>
+                </Button>
               </div>
             </div>
 
@@ -272,17 +270,18 @@ function Index() {
                   ))}
                 </div>
               )}
-              {c.whatsapp && (
-                <Button asChild variant="heroOutline" size="lg" className="mt-10">
-                  <a
-                    href={waLink(c.whatsapp, "Olá! Gostaria de convidar você para uma palestra.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Convidar para uma palestra
-                  </a>
-                </Button>
-              )}
+              <Button asChild variant="heroOutline" size="lg" className="mt-10">
+                <a
+                  href={waLink(
+                    GENERAL_WHATSAPP,
+                    "Olá! Gostaria de convidar você para uma palestra.",
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Convidar para uma palestra
+                </a>
+              </Button>
             </div>
           </section>
         )}
@@ -341,17 +340,15 @@ function Index() {
               Converse com a {firstName} e descubra o melhor caminho para a sua família ou para a
               sua prática clínica.
             </p>
-            {c.whatsapp && (
-              <Button asChild variant="inverse" size="xl" className="mt-8">
-                <a
-                  href={waLink(c.whatsapp, "Olá! Quero saber mais.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Quero conversar agora
-                </a>
-              </Button>
-            )}
+            <Button asChild variant="inverse" size="xl" className="mt-8">
+              <a
+                href={waLink(GENERAL_WHATSAPP, "Olá! Quero saber mais.")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero conversar agora
+              </a>
+            </Button>
           </div>
         </section>
       </main>

@@ -55,6 +55,8 @@ export const COURSE_STATUS: Record<string, string> = {
 };
 
 export const DEFAULT_CHECKOUT_URL = "https://pay.cakto.com.br/34r2d8t_1290334";
+export const GENERAL_WHATSAPP = "5522997771418";
+export const FALE_COMIGO_WHATSAPP = "5521982469601";
 
 export function courseCtaHref(course: Course, whatsapp: string): string {
   const customUrl = course.cta_url?.trim();

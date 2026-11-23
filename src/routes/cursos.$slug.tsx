@@ -96,7 +96,7 @@ function CoursePage() {
 
   return (
     <div className="min-h-screen">
-      <SiteHeader name={c.name} whatsapp={c.whatsapp} />
+      <SiteHeader name={c.name} />
       <main>
         <section className="overflow-x-clip bg-warm">
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-14 md:grid-cols-2 md:py-20">
